@@ -185,6 +185,6 @@ install_DuLu-ui() {
     echo -e "------------------------------------------------- "
 }
 
-echo -e "${green} starts installing ${plain}"
+echo -e "${green}starts installing${plain}"
 install_base
 install_DuLu-ui $1
