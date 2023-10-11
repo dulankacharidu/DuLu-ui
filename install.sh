@@ -75,14 +75,27 @@ fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum update && yum upgrade -y && yum install socat wget curl tar -y
+        yum install socat wget curl ufw net-tools tar -y
     else
-        apt update && apt upgrade -y && apt install socat wget curl tar -y
+        apt install socat wget curl ufw net-tools tar -y
     fi
 }
 
 #Install Acme Script
 curl https://get.acme.sh | sh
+ufw  enable
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 22/tcp
+ufw allow 54321/tcp
+ufw allow 5555/tcp
+ufw allow 53/tcp
+ufw allow 53/udp
+ufw allow 80/udp
+ufw allow 443/udp
+ufw allow in tcp
+ufw allow out tcp
+
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 read -p "Please set your account email(xxxx@xxxx.com):" config_email
 echo -e "${yellow}Your account email will be set to:${config_email}${plain}"
