@@ -1,4 +1,4 @@
-#Dulu-ui
+#DuLu-ui
 
 Xray,V2ray ws,vmess,vless,trojan panel supporting multi-protocol and multi-user Full English Version
 
@@ -17,27 +17,27 @@ Xray,V2ray ws,vmess,vless,trojan panel supporting multi-protocol and multi-user 
 # Installation & Upgrade
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/dulankacharidu/Dulu-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/dulankacharidu/DuLu-ui/master/install.sh)
 ```
 
 ## Manual installation & upgrade
 
-1. First download the latest compressed package from https://github.com/dulankacharidu/Dulu-ui/releases, generally choose the `amd64` architecture
+1. First download the latest compressed package from https://github.com/dulankacharidu/DuLu-ui/releases, generally choose the `amd64` architecture
 2. Then upload the compressed package to the `/root/` directory of the server, and log in to the server using the `root` user
 
 > If your server CPU architecture is not `amd64`, replace `amd64` in the command with another architecture
 
 ```
 cd /root/
-rm Dulu-ui/ /usr/local/Dulu-ui/ /usr/bin/Dulu-ui -rf
-tar zxvf Dulu-ui-linux-amd64.tar.gz
-chmod +x Dulu-ui/Dulu-ui Dulu-ui/bin/xray-linux-* Dulu-ui/Dulu-ui.sh
-cp Dulu-ui/Dulu-ui.sh /usr/bin/Dulu-ui
-cp -f Dulu-ui/Dulu-ui.service /etc/systemd/system/
-mv Dulu-ui/ /usr/local/
+rm Dulu-ui/ /usr/local/DuLu-ui/ /usr/bin/DuLu-ui -rf
+tar zxvf DuLu-ui-linux-amd64.tar.gz
+chmod +x DuLu-ui/DuLu-ui DuLu-ui/bin/xray-linux-* DuLu-ui/DuLu-ui.sh
+cp DuLu-ui/DuLu-ui.sh /usr/bin/DuLu-ui
+cp -f DuLu-ui/DuLu-ui.service /etc/systemd/system/
+mv DuLu-ui/ /usr/local/
 systemctl daemon-reload
-systemctl enable Dulu-ui
-systemctl restart Dulu-ui
+systemctl enable DuLu-ui
+systemctl restart DuLu-ui
 ```
 
 ## Install using docker
@@ -64,7 +64,7 @@ docker run -itd --network=host \
 > Build your own image
 
 ```shell
-docker build -t Dulu-ui .
+docker build -t DuLu-ui .
 ```
 
 ## SSL certificate application
@@ -127,10 +127,10 @@ More features are planned...
 
 First install the latest version of Dulu-ui on the server where v2-ui is installed, and then use the following command to migrate. All inbound account data of the local v2-ui will be migrated to Dulu-ui, and the panel settings and username and password will be migrated. Will not migrate`
 
-> After the migration is successful, please `close v2-ui` and `restart Dulu-ui`, otherwise the inbound of v2-ui will cause a `port conflict` with the inbound of Dulu-ui`
+> After the migration is successful, please `close v2-ui` and `restart DuLu-ui`, otherwise the inbound of v2-ui will cause a `port conflict` with the inbound of DuLu-ui`
 
 ```
-Dulu-ui v2-ui
+DuLu-ui v2-ui
 ```
 
 ## issue close
@@ -138,4 +138,4 @@ Dulu-ui v2-ui
 All kinds of trivial questions make your blood pressure very high
 
 ## Special Thankx to : Vaxilu
-
+##DuLu-ui 
