@@ -75,9 +75,9 @@ fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum install wget curl tar -y
+        yum update && yum upgrade && yum install wget curl tar -y
     else
-        apt install wget curl tar -y
+        apt update && apt upgrade && apt install wget curl tar -y
     fi
 }
 
@@ -112,64 +112,64 @@ install_DuLu-ui() {
             echo -e "${red}Failed to detect the DuLu-ui version. It may be that the Github API limit is exceeded. Please try again later, or manually specify the DuLu-ui version for installation.${plain}"
             exit 1
         fi
-        echo -e "The latest version of Dulu-ui detected: ${last_version}, start installation"
-        wget -N --no-check-certificate -O /usr/local/Dulu-ui-linux-${arch}.tar.gz https://github.com/dulakacharidu/Dulu-ui/releases/download/${last_version}/Dulu-ui-linux-${arch}.tar.gz
+        echo -e "The latest version of DuLu-ui detected: ${last_version}, start installation"
+        wget -N --no-check-certificate -O /usr/local/DuLu-ui-linux-${arch}.tar.gz https://github.com/dulakacharidu/DuLu-ui/releases/download/${last_version}/DuLu-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Failed to download Dulu-ui, please make sure your server can download Github files${plain}"
+            echo -e "${red}Failed to download DuLu-ui, please make sure your server can download Github files${plain}"
             exit 1
         fi
     else
         last_version=$1
         url="https://github.com/dulankacharidu/DuLu-ui/releases/download/${last_version}/DuLu-ui-linux-${arch}.tar.gz"
-        echo -e "start installation Dulu-ui v$1"
-        wget -N --no-check-certificate -O /usr/local/Dulu-ui-linux-${arch}.tar.gz ${url}
+        echo -e "start installation DuLu-ui v$1"
+        wget -N --no-check-certificate -O /usr/local/DuLu-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Download Dulu-ui v$1 failed, please make sure this version exists${plain}"
+            echo -e "${red}Download DuLu-ui v$1 failed, please make sure this version exists${plain}"
             exit 1
         fi
     fi
 
-    if [[ -e /usr/local/Dulu-ui/ ]]; then
-        rm /usr/local/Dulu-ui/ -rf
+    if [[ -e /usr/local/DuLu-ui/ ]]; then
+        rm /usr/local/DuLu-ui/ -rf
     fi
 
-    tar zxvf Dulu-ui-linux-${arch}.tar.gz
-    rm Dulu-ui-linux-${arch}.tar.gz -f
-    cd Dulu-ui
-    chmod +x Dulu-ui bin/xray-linux-${arch}
-    cp -f Dulu-ui.service /etc/systemd/system/
-    wget --no-check-certificate -O /usr/bin/Dulu-ui https://raw.githubusercontent.com/dulankacharidu/Dulu-ui/main/Dulu-ui.sh
-    chmod +x /usr/local/Dulu-ui/Dulu-ui.sh
-    chmod +x /usr/bin/Dulu-ui
+    tar zxvf DuLu-ui-linux-${arch}.tar.gz
+    rm DuLu-ui-linux-${arch}.tar.gz -f
+    cd DuLu-ui
+    chmod +x DuLu-ui bin/xray-linux-${arch}
+    cp -f DuLu-ui.service /etc/systemd/system/
+    wget --no-check-certificate -O /usr/bin/DuLu-ui https://raw.githubusercontent.com/dulankacharidu/DuLu-ui/0.1.0/DuLu-ui.sh
+    chmod +x /usr/local/DuLu-ui/DuLu-ui.sh
+    chmod +x /usr/bin/DuLu-ui
     config_after_install
     #echo -e "If it is a new installation, the default web port is ${green}54321${plain}, and the default username and password are ${green}admin${plain}"
     #echo -e "Please ensure that this port is not occupied by other programs, ${yellow} and ensure that port 54321 has been released ${plain}"
-    # echo -e "If you want to change 54321 to another port, enter the Dulu-ui command to modify it. Also make sure that the port you modify is also allowed."
+    # echo -e "If you want to change 54321 to another port, enter the DuLu-ui command to modify it. Also make sure that the port you modify is also allowed."
     #echo -e ""
     #echo -e "If updating the panel, access the panel as you did before"
     #echo -e ""
     systemctl daemon-reload
-    systemctl enable Dulu-ui
-    systemctl start Dulu-ui
-    echo -e "${green}Dulu-ui v${last_version}${plain} installation is complete and the panel has been started,"
+    systemctl enable DuLu-ui
+    systemctl start DuLu-ui
+    echo -e "${green}DuLu-ui v${last_version}${plain} installation is complete and the panel has been started,"
     echo -e ""
-    echo -e "How to use Dulu-ui management script: "
+    echo -e "How to use DuLu-ui management script: "
     echo -e "------------------------------------------------- "
-    echo -e "Dulu-ui - show management menu (more functions)"
-    echo -e "Dulu-ui start - Start Dulu-ui panel"
-    echo -e "Dulu-ui stop - Stop Dulu-ui panel"
-    echo -e "Dulu-ui restart - Restart the Dulu-ui panel"
-    echo -e "Dulu-ui status - View Dulu-ui status"
-    echo -e "Dulu-ui enable - Set Dulu-ui to start automatically at boot"
-    echo -e "Dulu-ui disable - Cancel Dulu-ui startup at boot"
-    echo -e "Dulu-ui log - View Dulu-ui log"
-    echo -e "Dulu-ui v2-ui - migrate the v2-ui account data of this machine to Dulu-ui"
-    echo -e "Dulu-ui update - update Dulu-ui panel"
-    echo -e "Dulu-ui install - install Dulu-ui panel"
-    echo -e "Dulu-ui uninstall - Uninstall Dulu-ui panel"
+    echo -e "DuLu-ui - show management menu (more functions)"
+    echo -e "DuLu-ui start - Start DuLu-ui panel"
+    echo -e "DuLu-ui stop - Stop DuLu-ui panel"
+    echo -e "DuLu-ui restart - Restart the DuLu-ui panel"
+    echo -e "DuLu-ui status - View DuLu-ui status"
+    echo -e "DuLu-ui enable - Set DuLu-ui to start automatically at boot"
+    echo -e "DuLu-ui disable - Cancel DuLu-ui startup at boot"
+    echo -e "DuLu-ui log - View DuLu-ui log"
+    echo -e "DuLu-ui v2-ui - migrate the v2-ui account data of this machine to DuLu-ui"
+    echo -e "DuLu-ui update - update DuLu-ui panel"
+    echo -e "DuLu-ui install - install DuLu-ui panel"
+    echo -e "DuLu-ui uninstall - Uninstall DuLu-ui panel"
     echo -e "------------------------------------------------- "
 }
 
 echo -e "${green} starts installing ${plain}"
 install_base
-install_Dulu-ui $1
+install_DuLu-ui $1
