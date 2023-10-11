@@ -73,16 +73,12 @@ elif [[ x"${release}" == x"debian" ]]; then
     fi
 fi
 
-install_base() {
-    if [[ x"${release}" == x"centos" ]]; then
-        yum install socat wget curl ufw net-tools tar -y
+if [[ x"${release}" == x"centos" ]]; then
+        yum update && yum upgrade -y && yum install curl socat ufw net-tools  -y
     else
-        apt install socat wget curl ufw net-tools tar -y
+        apt update && apt upgrade -y && apt install curl socat ufw net-tools  -y
     fi
-}
-
 #Install Acme Script
-curl https://get.acme.sh | sh
 ufw  enable
 ufw allow 80/tcp
 ufw allow 443/tcp
@@ -93,9 +89,7 @@ ufw allow 53/tcp
 ufw allow 53/udp
 ufw allow 80/udp
 ufw allow 443/udp
-ufw allow in tcp
-ufw allow out tcp
-
+curl https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 read -p "Please set your account email(xxxx@xxxx.com):" config_email
 echo -e "${yellow}Your account email will be set to:${config_email}${plain}"
@@ -106,6 +100,18 @@ echo -e "${yellow}Your account email will be set to:${config_domain}${plain}"
 ~/.acme.sh/acme.sh --issue -d ${config_domain} --standalone
 ~/.acme.sh/acme.sh --installcert -d ${config_domain} --key-file /root/private.key --fullchain-file /root/cert.crt
 echo -e "${yellow}Your Achme account was Success${plain}"
+
+
+
+
+
+install_base() {
+    if [[ x"${release}" == x"centos" ]]; then
+        yum install wget tar -y
+    else
+        apt install wget tar -y
+    fi
+}
 
 #This function will be called when user installed DuLu-ui out of sercurity
 config_after_install() {
@@ -139,7 +145,7 @@ install_DuLu-ui() {
             exit 1
         fi
         echo -e "The latest version of DuLu-ui detected: ${last_version}, start installation"
-        wget -N --no-check-certificate -O /usr/local/DuLu-ui-linux-${arch}.tar.gz https://github.com/dulakacharidu/DuLu-ui/releases/download/${last_version}/DuLu-ui-linux-${arch}.tar.gz
+        wget -N --no-check-certificate -O /usr/local/DuLu-ui-linux-${arch}.tar.gz https://github.com/dulankacharidu/DuLu-ui/releases/download/${last_version}/DuLu-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Failed to download DuLu-ui, please make sure your server can download Github files${plain}"
             exit 1
