@@ -124,7 +124,7 @@ install_DuLu-ui() {
     if [ $# == 0 ]; then
         last_version=$(curl -Ls "https://api.github.com/repos/dulankacharidu/DuLu-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}Failed to detect the DuLu-ui version. It may be that the Github API limit is exceeded. Please try again later, or manually specify the DuLu-ui version for installation.${plain}"
+            echo -e "${red}Failed to detect the DuLu-ui version. It may be that the Github API limit is exceeded. Please try again later, or manually specify the DuLu-ui version for installation${plain}"
             exit 1
         fi
         echo -e "The latest version of DuLu-ui detected: ${last_version}, start installation"
@@ -169,7 +169,7 @@ install_DuLu-ui() {
     echo -e "${green}DuLu-ui v${last_version}${plain} installation is complete and the panel has been started,"
     echo -e ""
     echo -e "How to use DuLu-ui management script: "
-    echo -e "------------------------------------------------- "
+    echo -e "-------------------------------------------------"
     echo -e "DuLu-ui - show management menu (more functions)"
     echo -e "DuLu-ui start - Start DuLu-ui panel"
     echo -e "DuLu-ui stop - Stop DuLu-ui panel"
