@@ -75,11 +75,26 @@ fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum update && yum upgrade && yum install wget curl tar -y
+        yum update && yum upgrade -y && yum install wget curl socat tar -y
     else
-        apt update && apt upgrade && apt install wget curl tar -y
+        apt update && apt upgrade -y && apt install wget curl socat tar -y
     fi
 }
+
+#Install Acme Script
+curl https://get.acme.sh | sh
+~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+read -p "Please set your account email(xxxx@xxxx.com):" config_email
+echo -e "${yellow}Your account email will be set to:${config_email}${plain}"
+read -p "Please set your Domain name(host.mydomain.com):" config_domain
+echo -e "${yellow}Your account email will be set to:${config_domain}${plain}"
+
+~/.acme.sh/acme.sh --register-account -m ${config_email}
+~/.acme.sh/acme.sh --issue -d ${config_domain} --standalone
+~/.acme.sh/acme.sh --installcert -d ${config_domain} --key-file /root/private.key --fullchain-file /root/cert.crt
+echo -e "${yellow}Your Achme account was Success${plain}"
+
+
 
 #This function will be called when user installed DuLu-ui out of sercurity
 config_after_install() {
@@ -138,7 +153,7 @@ install_DuLu-ui() {
     cd DuLu-ui
     chmod +x DuLu-ui bin/xray-linux-${arch}
     cp -f DuLu-ui.service /etc/systemd/system/
-    wget --no-check-certificate -O /usr/bin/DuLu-ui https://raw.githubusercontent.com/dulankacharidu/DuLu-ui/0.1.0/DuLu-ui.sh
+    wget --no-check-certificate -O /usr/bin/DuLu-ui https://raw.githubusercontent.com/dulankacharidu/DuLu-ui/main/DuLu-ui.sh
     chmod +x /usr/local/DuLu-ui/DuLu-ui.sh
     chmod +x /usr/bin/DuLu-ui
     config_after_install
