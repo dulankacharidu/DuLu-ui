@@ -182,7 +182,7 @@ install_DuLu-ui() {
     echo -e "DuLu-ui update - update DuLu-ui panel"
     echo -e "DuLu-ui install - install DuLu-ui panel"
     echo -e "DuLu-ui uninstall - Uninstall DuLu-ui panel"
-    echo -e "------------------------------------------------- "
+    echo -e "-------------------------------------------------"
 }
 
 echo -e "${green}starts installing${plain}"
