@@ -69,7 +69,7 @@ elif [[ x"${release}" == x"ubuntu" ]]; then
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${redPlease use Debian 8 or higher version of the system！${plain}\n" && exit 1
+        echo -e "${red}Please use Debian 8 or higher version of the system！${plain}\n" && exit 1
     fi
 fi
 
@@ -93,8 +93,6 @@ echo -e "${yellow}Your account email will be set to:${config_domain}${plain}"
 ~/.acme.sh/acme.sh --issue -d ${config_domain} --standalone
 ~/.acme.sh/acme.sh --installcert -d ${config_domain} --key-file /root/private.key --fullchain-file /root/cert.crt
 echo -e "${yellow}Your Achme account was Success${plain}"
-
-
 
 #This function will be called when user installed DuLu-ui out of sercurity
 config_after_install() {
@@ -182,9 +180,9 @@ install_DuLu-ui() {
     echo -e "DuLu-ui update - update DuLu-ui panel"
     echo -e "DuLu-ui install - install DuLu-ui panel"
     echo -e "DuLu-ui uninstall - Uninstall DuLu-ui panel"
-    echo -e "-------------------------------------------------"
+    echo -e "------------------------------------------------- "
 }
 
-echo -e "${green}starts installing${plain}"
+echo -e "${green}start installing${plain}"
 install_base
 install_DuLu-ui $1
