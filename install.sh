@@ -75,9 +75,9 @@ fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum update && yum upgrade -y && yum install wget curl socat tar -y
+        yum update && yum upgrade -y && yum install socat wget curl tar -y
     else
-        apt update && apt upgrade -y && apt install wget curl socat tar -y
+        apt update && apt upgrade -y && apt install socat wget curl tar -y
     fi
 }
 
