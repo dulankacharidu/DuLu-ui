@@ -1,0 +1,10 @@
+.idea
+tmp
+bin/xray-darwin-arm64
+bin/config.json
+dist/
+DuLu-ui-*.tar.gz
+/DuLu-ui
+/release.sh
+.sync*
+main
