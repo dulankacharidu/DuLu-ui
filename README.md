@@ -1,6 +1,6 @@
 #Dulu-ui
 
-xray panel supporting multi-protocol and multi-user
+Xray,V2ray ws,vmess,vless,trojan panel supporting multi-protocol and multi-user Full English Version
 
 # Features
 
@@ -137,6 +137,5 @@ Dulu-ui v2-ui
 
 All kinds of trivial questions make your blood pressure very high
 
-## Stargazers over time
+## Special Thankx to : Vaxilu
 
-[![Stargazers over time](https://starchart.cc/dulankacharidu/Dulu-ui.svg)](https://starchart.cc/dulankacharidu/Dulu-ui)
